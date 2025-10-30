@@ -18,14 +18,14 @@ showSlideNumber: "print"
 revealjs-url: "assets/reveal.js-5.2.1/"
 ---
 
-# 
+#
 
 :::::: {.r-stack}
 ::: {.fragment data-fragment-index=1 .fade-out}
 ![&nbsp;](figures/bud_empty.svg){height=550}
 :::
 ::: {.fragment data-fragment-index=1 .current-visible}
-![37 data points (0.5% of unique places)](figures/bud_05pct.svg){height=550}
+![37 data points from Weeplace checkins [@chen_2022_6369319]](figures/bud_05pct.svg){height=550}
 :::
 ::: {.fragment data-fragment-index=2 .current-visible}
 ![37 data points (0.5% of unique places)](figures/bud_05pct_zoom.svg){height=550}
@@ -50,11 +50,39 @@ revealjs-url: "assets/reveal.js-5.2.1/"
 
 :::
 
-<!--## human activity is tightly connected to the urban areas
+## human activity is tightly connected to the urban areas
 
-- only ~700 data points and Budapest is almost recognizable-->
-
+- only ~700 data points and Budapest is almost recognizable
+- ~3500 data points reveals the silhouette of the city
+    - although the distribution is uneven
 
 <!--::: {.r-fit-text}
 human activity is tightly connected to the urban areas
 :::-->
+
+## {data-background-image="figures/nasa.jpg"}
+
+::: {.text-color-light-shadowed .mt-8}
+photo by NASA | NASA's Earth Observatory
+:::
+
+## {data-background-image="figures/central_europe.png"}
+
+::: notes
+mobile positioning data my not represent everyone, but we can clearly see the main hotspots of human activity
+:::
+
+<!--## {data-background-image="figures/central_europe_light.png"}
+
+- some cities, regions are underrepresented
+    - rural settlements
+- some people may not represented in the data
+- mobile positioning data may not represent everyone, but the hotsports of human activity are already
+    - more and more data is collected
+    -->
+
+
+# references
+
+::: {#refs}
+:::
