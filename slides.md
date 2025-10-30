@@ -1,7 +1,8 @@
 ---
 title: geolocating cities using human activity traces
 author: Gergő Pintér<span class="text-color-frost1">,</span> PhD
-date: gergo.pinter<span class="text-color-frost1">@</span>uni-corvinus.hu
+date: |
+    gergo.pinter<span class="text-color-frost1">@</span>uni-corvinus.hu
 institute: |
     ANETI Lab <span class="text-color-frost1">/</span> CIAS <br>
     Department of Network Science <span class="text-color-frost1">/</span> IDAIS <br>
@@ -10,7 +11,7 @@ lang: en-US
 theme: solarized
 title-slide-attributes:
     data-background-color: "#2e3440"
-    data-background-image: assets/by.svg
+    data-background-image: assets/CC-BY.svg
     data-background-size: 125px
     data-background-position: 1.5rem calc(100% - 1.5rem)
 slideNumber: "true"
@@ -81,6 +82,81 @@ mobile positioning data my not represent everyone, but we can clearly see the ma
     - more and more data is collected
     -->
 
+# JY100KMob
+
+## visualizing mobility data
+
+:::::::::::: {.columns}
+::::::::: {.column width="50%"}
+![activity count (log)](figures/activity_heatmap.png){.frame}
+
+:::::::::
+::::::::: {.column width="50%"}
+![unique user count (log)](figures/user_heatmap.png){.frame data-preview-image="figures/user_heatmap_v2.png" data-preview-fit="contain"}
+
+:::::::::
+::::::::::::
+
+::: {.text-smaller}
+reproductions of figure 8 [@yabe2024yjmob100k]
+:::
+
+# finding out which city it is
+
+1. Japan is an island country
+2. the largest cities are on the shores
+3. 100 km by 100 km observation area
+4. some low activity part of the heatmap must be water
+
+## finding out which city it is -- largest cities
+
+:::::::::::: {.columns}
+::::::::: {.column width="33%" .fragment}
+![Tokyo (1) and Yokohama (2)](figures/tokyo_and_yokohama_gamma-50.png){data-preview-image="figures/tokyo_and_yokohama_gamma-50.png" data-preview-fit="contain"}
+
+:::::::::
+::::::::: {.column width="33%" .fragment}
+![Osaka (3)](figures/osaka_gamma-50.png){data-preview-image="figures/osaka_gamma-50.png" data-preview-fit="contain"}
+
+:::::::::
+::::::::: {.column width="33%" .fragment}
+![Nagoya (4)](figures/nagoya_gamma-50.png){data-preview-image="figures/nagoya_gamma-50.png" data-preview-fit="contain"}
+
+:::::::::
+::::::::::::
+
+## finding out which city it is -- Nagoya
+
+:::::::::::: {.columns}
+::::::::: {.column width="33%"}
+![](figures/nagoya_gamma-50.png){data-preview-image="figures/nagoya_gamma-50.png" data-preview-fit="contain"}
+
+:::::::::
+::::::::: {.column width="33%"}
+:::::: {.r-stack}
+::: {}
+![](figures/user_heatmap.png)
+
+<i class="fa-solid"></i>
+:::
+::: {.fragment fragment-index=2 .current-visible}
+![](figures/user_heatmap_rot.png)
+
+<i class="fa-solid fa-rotate-left"></i>
+:::
+::: {.fragment fragment-index=3}
+![](figures/user_heatmap_rotrot.png)
+
+<i class="fa-solid fa-rotate-left"></i><i class="fa-solid fa-rotate-left"></i>
+:::
+::::::
+:::::::::
+::::::::: {.column width="33%" .fragment fragment-index=4}
+![](figures/user_heatmap_fixed.png)
+
+<i class="fa-solid fa-arrows-left-right"></i>
+:::::::::
+::::::::::::
 
 # references
 
