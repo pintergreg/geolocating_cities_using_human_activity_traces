@@ -1,0 +1,19 @@
+formats = [ "png", "svg" ]
+
+[colors]
+landuse = "#4dac26"
+activity = "#d01c8b"
+
+[metadata.png]
+Author = "Gergő Pintér"
+CreationDate = "None"
+Copyright = "CC BY 4.0"
+
+[metadata.pdf]
+Author = "Gergő Pintér"
+CreationDate = "None"
+
+[metadata.svg]
+Creator = "Gergő Pintér"
+Date = "None"
+Rights = "CC BY 4.0"
