@@ -82,7 +82,14 @@ mobile positioning data my not represent everyone, but we can clearly see the ma
     - more and more data is collected
     -->
 
-# JY100KMob
+# YJ100KMob
+
+- published as open data in 2023
+    - as a part of the HuMob Challenge 2023
+- follows 100,000 people
+- during 90 days
+- in a 100 km by 100 km area
+- somewhere in Japan
 
 ## visualizing mobility data
 
@@ -157,6 +164,10 @@ reproductions of figure 8 [@yabe2024yjmob100k]
 <i class="fa-solid fa-arrows-left-right"></i>
 :::::::::
 ::::::::::::
+
+::: {.fragment fragment-index=5}
+[problem]{.text-color-aurora1}: the heatmap contains no geographic information
+:::
 
 # references
 
