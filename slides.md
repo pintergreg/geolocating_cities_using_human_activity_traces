@@ -169,6 +169,22 @@ reproductions of figure 8 [@yabe2024yjmob100k]
 [problem]{.text-color-aurora1}: the heatmap contains no geographic information
 :::
 
+# template matching
+
+![via [Wikipedia](https://en.wikipedia.org/wiki/File:Template_Matching.png) by Laserlicht and Benjamin Watson | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)](figures/Template_Matching.png){.frame}
+
+## applying template matching to the problem
+
+:::::::::::: {.columns}
+::::::::: {.column width="50%"}
+1. 
+
+:::::::::
+::::::::: {.column width="50%"}
+
+:::::::::
+::::::::::::
+
 # references
 
 ::: {#refs}
