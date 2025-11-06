@@ -84,12 +84,13 @@ mobile positioning data my not represent everyone, but we can clearly see the ma
 
 # YJ100KMob
 
-- published as open data in 2023
-    - as a part of the HuMob Challenge 2023
+- published as open data in 2023 [@yabe_2024_10836269]
+    - as a part of the HuMob Challenge 2023 [@yabe2023humob]
 - follows 100,000 people
-- during 90 days
+- during consecutive 90 days
+    - not known which days
 - in a 100 km by 100 km area
-- somewhere in Japan
+- *somewhere* in Japan
 
 ## visualizing mobility data
 
@@ -176,16 +177,22 @@ reproductions of figure 8 [@yabe2024yjmob100k]
 ## applying template matching to the problem
 
 :::::::::::: {.columns}
-::::::::: {.column width="50%"}
-1. 
+::::::::: {.column width="60%"}
+- a map is required where 1 pixel is 500
+
+![](figures/large_voyager_gamma-50.png)
 
 :::::::::
-::::::::: {.column width="50%"}
+::::::::: {.column width="40%"}
+- template: 200×200 image
+- 1 pixel is 500 m
+
+![](figures/activity_heatmap_fixed.png){width=200}
 
 :::::::::
 ::::::::::::
 
 # references
 
-::: {#refs}
+::: {#refs .text-smaller}
 :::
