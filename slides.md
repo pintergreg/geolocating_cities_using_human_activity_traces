@@ -82,15 +82,28 @@ mobile positioning data my not represent everyone, but we can clearly see the ma
     - more and more data is collected
     -->
 
-# YJ100KMob
+# YJMob100K
 
+- data is from the Yahoo! Japan smartphone application
 - published as open data in 2023 [@yabe_2024_10836269]
     - as a part of the HuMob Challenge 2023 [@yabe2023humob]
 - follows 100,000 people
-- during consecutive 90 days
+- during consecutive 75 days
     - not known which days
 - in a 100 km by 100 km area
 - *somewhere* in Japan
+
+## data sample
+
+|   uid |   d |   t |   x |   y |
+|------:|----:|----:|----:|----:|
+|     0 |   0 |   1 |  79 |  86 |
+|     0 |   0 |   2 |  79 |  86 |
+|     0 |   0 |   8 |  77 |  86 |
+|     0 |   0 |   9 |  77 |  86 |
+|     0 |   0 |  19 |  81 |  89 |
+
+where d is day, t is time (0-47), x and y is the location in a 200 × 200 grid
 
 ## visualizing mobility data
 
@@ -145,24 +158,30 @@ reproductions of figure 8 [@yabe2024yjmob100k]
 ::: {}
 ![](figures/user_heatmap.png)
 
-<i class="fa-solid"></i>
+<!-- <i class="fa-solid"></i> -->
+![](assets/empty.drawio.svg){width=48}
 :::
 ::: {.fragment fragment-index=2 .current-visible}
 ![](figures/user_heatmap_rot.png)
 
-<i class="fa-solid fa-rotate-left"></i>
+<!-- <i class="fa-solid fa-rotate-left"></i> -->
+![](assets/rotate.drawio.svg){width=48}
 :::
 ::: {.fragment fragment-index=3}
 ![](figures/user_heatmap_rotrot.png)
 
-<i class="fa-solid fa-rotate-left"></i><i class="fa-solid fa-rotate-left"></i>
+<!-- <i class="fa-solid fa-rotate-left"></i><i class="fa-solid fa-rotate-left"></i> -->
+![](assets/rotate.drawio.svg){width=48}
+![](assets/rotate.drawio.svg){width=48}
 :::
 ::::::
 :::::::::
 ::::::::: {.column width="33%" .fragment fragment-index=4}
 ![](figures/user_heatmap_fixed.png)
 
-<i class="fa-solid fa-arrows-left-right"></i>
+<!-- <i class="fa-solid fa-arrows-left-right"></i> -->
+<!-- <i class="fa-solid fa-arrows-left-right-to-line"></i> -->
+![](assets/mirror.drawio.svg){width=48}
 :::::::::
 ::::::::::::
 
@@ -191,6 +210,105 @@ reproductions of figure 8 [@yabe2024yjmob100k]
 
 :::::::::
 ::::::::::::
+
+## preparing the template -- thresholding
+
+:::::::::::: {.columns}
+::::::::: {.column width="50%" .mt-1}
+::::::: {.r-stack}
+::: {.fragment .fade-out fragment-index=1}
+![&nbsp;](figures/activity_histogram.svg)
+
+:::
+::: {.fragment .current-visible fragment-index=1}
+![threshold = 75](figures/activity_histogram_threshold.svg)
+:::
+:::::::
+:::::::::
+::::::::: {.column width="50%"}
+::::::: {.r-stack}
+::: {.fragment .fade-out fragment-index=1}
+![](figures/activity_heatmap_fixed.png)
+
+:::
+::: {.fragment .current-visible fragment-index=1}
+![](figures/activity_cut.png)
+:::
+:::::::
+:::::::::
+::::::::::::
+
+## geolocating with template matching
+
+:::::::::::: {.columns}
+::::::::: {.column width="60%"}
+:::::: {.r-stack}
+::: {.fragment .fade-out fragment-index=1}
+![&nbsp;](figures/geolocating/unstretched/large_500_500.png){width=560}
+:::
+::: {.fragment .current-visible fragment-index=1}
+![&nbsp;](figures/geolocating/unstretched/location_500_500.png){width=560}
+:::
+::: {.fragment .current-visible fragment-index=2}
+![&nbsp;](figures/geolocating/unstretched/location_explanation.png){width=560}
+:::
+::: {.fragment .current-visible fragment-index=3}
+![&nbsp;](figures/geolocating/unstretched/template_matched.png){width=560}
+:::
+::::::
+:::::::::
+::::::::: {.column width="40%" .text-smaller}
+![](figures/activity_cut_200.png){width=168}
+
+::: {.fragment fragment-index=2}
+- relative location: 127, 358
+- absolute
+    - [EPSG:2449](https://spatialreference.org/ref/epsg/2449/): -64000, -64000
+    - [WGS84](https://spatialreference.org/ref/epsg/4326/): 136.4619, 35.42107
+:::
+:::::::::
+::::::::::::
+
+## verificating the geolocation
+
+:::::::::::: {.columns}
+::::::::: {.column width="50%"}
+![](figures/geolocating/unstretched/template_matched.png)
+
+:::::::::
+::::::::: {.column width="50%"}
+![](figures/geolocating/unstretched/template_matched_zoomed.png)
+
+:::::::::
+::::::::::::
+
+## more transformation happened?
+
+:::::::::::: {.columns}
+::::::::: {.column width="55%"}
+- the grid was rotated and mirrored
+- what if a raster is not [exactly]{.text-color-aurora1} 500&nbsp;m&nbsp;×&nbsp;500&nbsp;m?
+- because it was also shrunk or stretched
+
+::: {.fragment}
+template considers one pixel as one raster of the grid
+
+it is difficult to shrink or stretch a pixel
+:::
+
+::: {.fragment}
+the map can be shrunk and stretched [inversely]{.text-color-aurora1}
+
+the value happened to be 10% shrink in width, 10% stretch in height
+:::
+:::::::::
+::::::::: {.column width="45%" .fragment}
+![](figures/geolocating/template_matched_zoomed_500_500.png){preview-image="figures/geolocating/unstretched/template_matched_zoomed.png" data-preview-fit="contain"}
+
+a raster of a grid is actually 450&nbsp;m&nbsp;×&nbsp;550&nbsp;m
+:::::::::
+::::::::::::
+
 
 # references
 
