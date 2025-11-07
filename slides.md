@@ -303,12 +303,30 @@ the value happened to be 10% shrink in width, 10% stretch in height
 :::
 :::::::::
 ::::::::: {.column width="45%" .fragment}
-![](figures/geolocating/template_matched_zoomed_500_500.png){preview-image="figures/geolocating/unstretched/template_matched_zoomed.png" data-preview-fit="contain"}
+![](figures/geolocating/template_matched_zoomed_500_500.png){preview-image="figures/geolocating/unstretched/template_matched_zoomed.png" preview-fit="contain"}
 
 a raster of a grid is actually 450&nbsp;m&nbsp;×&nbsp;550&nbsp;m
 :::::::::
 ::::::::::::
 
+## verification
+
+:::::::::::: {.columns}
+::::::::: {.column width="50%"}
+![](figures/activity_count_coordinate_explanation_2449.png){.frame}
+
+:::::::::
+::::::::: {.column width="50%" .mt-2 .fragment}
+1. estimate user's home location
+2. associate rasters to municipalities
+3. sum the estimated inhabitants<br>per municipalities
+4. compare with census data [@estat2020population]
+
+::: {.fragment}
+![correlation coefficient (Pearson's R): 0.8879](figures/population_per_city.svg){preview-image="figures/population_per_city.svg" preview-fit="contain"}
+:::
+:::::::::
+::::::::::::
 
 # references
 
