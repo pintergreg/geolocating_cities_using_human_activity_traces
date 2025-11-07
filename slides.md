@@ -328,6 +328,52 @@ a raster of a grid is actually 450&nbsp;m&nbsp;×&nbsp;550&nbsp;m
 :::::::::
 ::::::::::::
 
+# robustness check -- thresholding
+
+:::::::::::: {.columns}
+::::::::: {.column width="25%"}
+![50](figures/threshold/threshold_50.svg){width=200}
+
+![](figures/threshold/activity_cut_50.png){.frame}
+
+:::::::::
+::::::::: {.column width="25%"}
+![500](figures/threshold/threshold_500.svg){width=200}
+
+![](figures/threshold/activity_cut_500.png){.frame}
+
+:::::::::
+::::::::: {.column width="25%"}
+![1000](figures/threshold/threshold_1000.svg){width=200}
+
+![](figures/threshold/activity_cut_5000.png){.frame}
+
+:::::::::
+::::::::: {.column width="25%"}
+![5000](figures/threshold/threshold_1000.svg){width=200}
+
+![](figures/threshold/activity_cut_5000.png){.frame}
+
+:::::::::
+::::::::::::
+
+::: notes
+I've said that the threshold of 75 was selected arbitrarily.
+Let me show that why that value has not too much impact on the geolocating.
+:::
+
+## anchor difference by threshold
+
+![](figures/threshold_mod.svg)
+
+::: {.text-smaller .narrow-table}
+|   |  25|  50| 100| 200| 300| 400| 500| 600| 700| 800| 900| 1000| 2000| 3000| 4000| 5000|
+|--:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|----:|----:|----:|----:|----:|
+| x |  0 |  0 | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  |-228| -228|  65 |  61 | -387| -387|
+| y |  0 |  0 | 0  | 1  | 1  | 1  | 1  | 1  | 1  | 1  |  44|   45| 150 | 149 |   78|   79|
+
+:::
+
 # references
 
 ::: {#refs .text-smaller}
