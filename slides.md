@@ -374,6 +374,36 @@ Let me show that why that value has not too much impact on the geolocating.
 
 :::
 
+# compare mobility data with residential areas
+
+:::::::::::: {.columns}
+::::::::: {.column width="50%"}
+![](figures/toronto/landuse.png){#toronto compare="figures/toronto/activity.png" before="OSM" after="MPD" width="475"}
+
+Toronto
+:::::::::
+::::::::: {.column width="50%"}
+![](figures/london/landuse.png){#london compare="figures/london/activity.png" before="OSM" after="MPD" width="475"}
+
+London
+:::::::::
+::::::::::::
+
+## compare mobility data with residential areas
+
+:::::::::::: {.columns}
+::::::::: {.column width="50%"}
+![](figures/helsinki/landuse.png){#helsinki compare="figures/helsinki/activity.png" before="OSM" after="MPD" width="475"}
+
+Helsinki
+:::::::::
+::::::::: {.column width="50%"}
+![](figures/dallas/landuse.png){#dallas compare="figures/dallas/activity.png" before="OSM" after="MPD" width="475"}
+
+Dallas--Fort Worth
+:::::::::
+::::::::::::
+
 # references
 
 ::: {#refs .text-smaller}
