@@ -367,7 +367,7 @@ Let me show that why that value has not too much impact on the geolocating.
 ![](figures/threshold_mod.svg)
 
 ::: {.text-smaller .narrow-table}
-|   |  25|  50| 100| 200| 300| 400| 500| 600| 700| 800| 900| 1000| 2000| 3000| 4000| 5000|
+|   |  [25]{preview-image="figures/threshold/activity_cut_400_25.png"}|  [50]{preview-image="figures/threshold/activity_cut_400_50.png"}| [100]{preview-image="figures/threshold/activity_cut_400_100.png"}| [200]{preview-image="figures/threshold/activity_cut_400_200.png"}| [300]{preview-image="figures/threshold/activity_cut_400_300.png"}| [400]{preview-image="figures/threshold/activity_cut_400_400.png"}| [500]{preview-image="figures/threshold/activity_cut_400_500.png"}| [600]{preview-image="figures/threshold/activity_cut_400_600.png"}| [700]{preview-image="figures/threshold/activity_cut_400_700.png"}| [800]{preview-image="figures/threshold/activity_cut_400_800.png"}| [900]{preview-image="figures/threshold/activity_cut_400_900.png"}| [1000]{preview-image="figures/threshold/activity_cut_400_1000.png"}| [2000]{preview-image="figures/threshold/activity_cut_400_2000.png"}| [3000]{preview-image="figures/threshold/activity_cut_400_3000.png"}| [4000]{preview-image="figures/threshold/activity_cut_400_4000.png"}| [5000]{preview-image="figures/threshold/activity_cut_400_5000.png"}|
 |--:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|----:|----:|----:|----:|----:|
 | x |  0 |  0 | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  |-228| -228|  65 |  61 | -387| -387|
 | y |  0 |  0 | 0  | 1  | 1  | 1  | 1  | 1  | 1  | 1  |  44|   45| 150 | 149 |   78|   79|
