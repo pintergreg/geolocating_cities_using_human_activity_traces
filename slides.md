@@ -323,7 +323,7 @@ a raster of a grid is actually 450&nbsp;m&nbsp;×&nbsp;550&nbsp;m
 4. compare with census data [@estat2020population]
 
 ::: {.fragment}
-![correlation coefficient (Pearson's R): 0.8879](figures/population_per_city.svg){preview-image="figures/population_per_city.svg" preview-fit="contain"}
+![correlation coefficient (Pearson's R): 0.8879](figures/population_per_city_transparent.svg){preview-image="figures/population_per_city.svg" preview-fit="contain"}
 :::
 :::::::::
 ::::::::::::
