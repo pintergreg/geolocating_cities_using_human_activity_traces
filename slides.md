@@ -378,12 +378,12 @@ Let me show that why that value has not too much impact on the geolocating.
 
 :::::::::::: {.columns}
 ::::::::: {.column width="50%"}
-![](figures/toronto/landuse.png){#toronto compare="figures/toronto/activity.png" before="OSM" after="MPD" width="475"}
+![](figures/toronto/landuse.png){#toronto compare="figures/toronto/activity.png" before="OSM" after="MPD" start="100" width="475"}
 
 Toronto
 :::::::::
 ::::::::: {.column width="50%"}
-![](figures/london/landuse.png){#london compare="figures/london/activity.png" before="OSM" after="MPD" width="475"}
+![](figures/london/landuse.png){#london compare="figures/london/activity.png" before="OSM" after="MPD" start="100" width="475"}
 
 London
 :::::::::
@@ -393,12 +393,12 @@ London
 
 :::::::::::: {.columns}
 ::::::::: {.column width="50%"}
-![](figures/helsinki/landuse.png){#helsinki compare="figures/helsinki/activity.png" before="OSM" after="MPD" width="475"}
+![](figures/helsinki/landuse.png){#helsinki compare="figures/helsinki/activity.png" before="OSM" after="MPD" start="50" width="475"}
 
 Helsinki
 :::::::::
 ::::::::: {.column width="50%"}
-![](figures/dallas/landuse.png){#dallas compare="figures/dallas/activity.png" before="OSM" after="MPD" width="475"}
+![](figures/dallas/landuse.png){#dallas compare="figures/dallas/activity.png" before="OSM" after="MPD" start="50" width="475"}
 
 Dallas--Fort Worth
 :::::::::

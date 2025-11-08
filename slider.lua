@@ -3,7 +3,7 @@ if FORMAT:match 'revealjs' then
     function Image(elem)
         local attributes = ""
         for k, v in pairs(elem.attributes) do
-            if k ~= "compare" and k ~= "before" and k ~= "after" then
+            if k ~= "compare" and k ~= "before" and k ~= "after" and k ~= "start" then
                 attributes = attributes .. k .. "=\"" .. v .. "\" "
             end
         end
@@ -11,22 +11,22 @@ if FORMAT:match 'revealjs' then
         if elem.attributes.compare == nil then
             return elem
         else
+            local start = elem.attributes["start"]
+            if start == nil then
+                start = "50"
+            end
             local result = {
                 pandoc.RawInline("html",
                     "<div id=\"" ..
                     elem.identifier ..
-                    "\" class=\"beer-slider\" data-beer-label=\"" .. elem.attributes.before .. "\">"),
-                pandoc.RawInline("html", "  <img src=\"" .. elem.src .. "\"" .. attributes .. "/>"),
+                    "\" class=\"beer-slider\" data-beer-label=\"" ..
+                    elem.attributes.before .. "\" data-beer-start=\"" .. start .. "\">"),
+                pandoc.RawInline("html", "  <img src=\"" .. elem.src .. "\" " .. attributes .. "/>"),
                 pandoc.RawInline("html",
                     "  <div class=\"beer-reveal\" data-beer-label=\"" .. elem.attributes.after .. "\">"),
-                pandoc.RawInline("html", "    <img src=\"" .. elem.attributes.compare .. "\"" .. attributes .. "/>"),
+                pandoc.RawInline("html", "    <img src=\"" .. elem.attributes.compare .. "\" " .. attributes .. "/>"),
                 pandoc.RawInline("html", "  </div>"),
-                pandoc.RawInline("html", "</div>"),
-                pandoc.RawInline("html", "<script>"),
-                pandoc.RawInline("html",
-                    "  var slider_" ..
-                    elem.identifier .. " = new BeerSlider(document.getElementById(\"" .. elem.identifier .. "\"));"),
-                pandoc.RawInline("html", "</script>")
+                pandoc.RawInline("html", "</div>")
             }
             return result
         end
