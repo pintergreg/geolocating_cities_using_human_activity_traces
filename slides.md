@@ -374,7 +374,7 @@ Let me show that why that value has not too much impact on the geolocating.
 
 :::
 
-# compare mobility data with residential areas
+## different cities, different data
 
 :::::::::::: {.columns}
 ::::::::: {.column width="50%"}
@@ -382,14 +382,14 @@ Let me show that why that value has not too much impact on the geolocating.
 
 Toronto
 :::::::::
-::::::::: {.column width="50%"}
+::::::::: {.column width="50%" .fragment}
 ![](figures/london/landuse.png){#london compare="figures/london/activity.png" before="OSM" after="MPD" start="100" width="475"}
 
 London
 :::::::::
 ::::::::::::
 
-## compare mobility data with residential areas
+## different cities, different data
 
 :::::::::::: {.columns}
 ::::::::: {.column width="50%"}
@@ -401,6 +401,34 @@ Helsinki
 ![](figures/dallas/landuse.png){#dallas compare="figures/dallas/activity.png" before="OSM" after="MPD" start="50" width="475"}
 
 Dallas--Fort Worth
+:::::::::
+::::::::::::
+
+## different cities, different data -- results
+
+:::::::::::: {.columns}
+::::::::: {.column width="50%"}
+:::::: {.r-stack}
+::: {.fragment .fade-out fragment-index=2}
+![Toronto](figures/toronto/location.png){.frame}
+:::
+::: {.fragment fragment-index=2}
+![Helsinki](figures/helsinki/location.png){.frame}
+:::
+::::::
+:::::::::
+::::::::: {.column width="50%"}
+:::::: {.r-stack}
+::: {.fragment .current-visible fragment-index=1}
+![London](figures/london/location.png){.frame}
+:::
+::: {.fragment .current-visible fragment-index=2}
+![London](figures/london/location.png){.frame}
+:::
+::: {.fragment fragment-index=3}
+![Dallas--Fort Worth](figures/dallas/location.png){.frame}
+:::
+::::::
 :::::::::
 ::::::::::::
 
