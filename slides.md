@@ -476,7 +476,7 @@ Port Messe Nagoya -- event center
 
 &nbsp;
 :::
-::: {.fragment}
+::: {.fragment fragment-index=1}
 ![](figures/port_messe_nagoya_activity_label.svg)
 
 *day 0* is 15 September 2019 [@mishra2025breaking]
@@ -484,6 +484,10 @@ Port Messe Nagoya -- event center
 
 :::::::::
 ::::::::::::
+
+::: {.text-smaller .fragment fragment-index=1}
+events collected by Mishra et al. [@mishra2025breaking]
+:::
 
 # references
 
