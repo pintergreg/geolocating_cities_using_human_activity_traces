@@ -442,6 +442,49 @@ Dallas--Fort Worth
 
 <!-- 1. with enough location data, the geographic distribution of the activities will describe the urban area -->
 
+# observation period {background="#ebcb8b40"}
+
+a follow-up study of Abhishek Kumar Mishra, Mathieu Cunche, and Héber&nbsp;H.&nbsp;Arcolezi inferred the observation period [@mishra2025breaking]
+
+:::::: {.r-stack}
+![](figures/daily_activity.svg){width=750}
+
+![](figures/daily_activity_annotated_weekend.svg){width=750 .fragment fragment-index=1}
+
+![](figures/daily_activity_annotated_weekend_holiday.svg){width=750 .fragment fragment-index=2}
+
+![](figures/daily_activity_annotated.svg){width=750 .fragment fragment-index=3}
+::::::
+
+- [daily activity shows the weekday--weekend differences [<svg width="40" height="24" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="24" x="4" y="0" fill="#ebcb8b" /></svg> ]]{.fragment fragment-index=1}
+- [holidays [<svg width="40" height="24" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="24" x="4" y="0" fill="#d08770" /></svg> ]]{.fragment fragment-index=2}
+    - [Respect for the Aged Day (16/09/2019), Autumn Equinox (23/09/2019), Health and Sports Day (14/10/2019), Enthronement Ceremony Day (22/10/2019), and Culture Day (04/11/2019)]{.text-smaller .fragment fragment-index=2}
+- [typhoon Hagibis made landfall in Japan (12 October 2019) [<svg width="40" height="24" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="24" x="4" y="0" fill="#bf616a" /></svg> ]]{.fragment fragment-index=3}
+
+## observation period -- verification {background="#ebcb8b40"}
+
+Port Messe Nagoya -- event center
+
+:::::::::::: {.columns}
+::::::::: {.column width="40%"}
+![](figures/port_messe_nagoya.png)
+
+:::::::::
+::::::::: {.column width="60%" .r-stack}
+::: {}
+![](figures/port_messe_nagoya_activity.svg)
+
+&nbsp;
+:::
+::: {.fragment}
+![](figures/port_messe_nagoya_activity_label.svg)
+
+*day 0* is 15 September 2019 [@mishra2025breaking]
+:::
+
+:::::::::
+::::::::::::
+
 # references
 
 ::: {#refs .text-smaller}
