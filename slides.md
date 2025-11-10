@@ -432,6 +432,16 @@ Dallas--Fort Worth
 :::::::::
 ::::::::::::
 
+## what did we learn so far?
+
+1. human activity is closely linked to urban areas
+2. even if the activity is transformed to a virtual plane (blind map)<br>the city is geolocatable
+
+::: {}
+:::
+
+<!-- 1. with enough location data, the geographic distribution of the activities will describe the urban area -->
+
 # references
 
 ::: {#refs .text-smaller}
