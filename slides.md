@@ -489,7 +489,35 @@ Port Messe Nagoya -- event center
 events collected by Mishra et al. [@mishra2025breaking]
 :::
 
-# references
+# takeaway
+
+1. human activity is closely linked to urban areas
+2. even if the activity is transformed to a virtual plane (blind map)<br>the city is geolocatable
+
+# thanks for the attention! {background="#2e3440" .as-main-title }
+
+::: {.text-color-snowstorm3}
+Gergő Pintér[,]{.text-color-snowstorm1} <span class="text-color-lightblue">gergo.pinter&ThinSpace;<span class="text-color-frost1">&#64;</span>&ThinSpace;uni-corvinus.hu</span>[,]{.text-color-snowstorm1} [\@]{.text-color-frost1}pintergreg<sup>[<i class="text-color-frost1 fa-brands fa-github"></i>](https://github.com/pintergreg) [<i class="text-color-frost1 fa-brands fa-bluesky"></i>](https://bsky.app/profile/pintergreg.bsky.social)</sup>
+:::
+
+::::::::::::::: {.columns .text-color-snowstorm3 .link-color}
+:::::::::::: {.column width="50%"}
+<!-- this presentation is available online: [pintergreg.github.io/geolocating_cities_using_human_activity_traces](https://pintergreg.github.io/geolocating_cities_using_human_activity_traces) -->
+&nbsp;<br>
+this presentation is available online:
+
+[![](assets/qr_code_slides.png){width=350}](https://pintergreg.github.io/geolocating_cities_using_human_activity_traces)
+
+::::::::::::
+:::::::::::: {.column width="50%"}
+read the paper:<br>[Scientific Reports 14, 30948 (2024)](https://doi.org/10.1038/s41598-024-82006-5)
+
+[![](assets/qr_code_paper.png){width=350}](https://doi.org/10.1038/s41598-024-82006-5)
+
+::::::::::::
+:::::::::::::::
+
+# references {visibility=uncounted}
 
 ::: {#refs .text-smaller}
 :::
