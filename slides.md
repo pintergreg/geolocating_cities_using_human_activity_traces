@@ -472,21 +472,18 @@ Port Messe Nagoya -- event center
 :::::::::
 ::::::::: {.column width="60%" .r-stack}
 ::: {}
-![](figures/port_messe_nagoya_activity.svg)
+![&nbsp;](figures/port_messe_nagoya_activity.svg)
 
-&nbsp;
 :::
 ::: {.fragment fragment-index=1}
-![](figures/port_messe_nagoya_activity_label.svg)
+![events collected by Mishra et al. [@mishra2025breaking]](figures/port_messe_nagoya_activity_label.svg)
 
-*day 0* is 15 September 2019 [@mishra2025breaking]
 :::
-
 :::::::::
 ::::::::::::
 
-::: {.text-smaller .fragment fragment-index=1}
-events collected by Mishra et al. [@mishra2025breaking]
+::: {.fragment fragment-index=1}
+*day 0* is 15 September 2019 [@mishra2025breaking]
 :::
 
 # takeaway
