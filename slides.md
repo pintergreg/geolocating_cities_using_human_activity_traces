@@ -572,6 +572,42 @@ Dallas--Fort Worth
 
 ## why does upscaling even matter?
 
+# privacy considerations
+
+- location data is likely to lead to privacy risks [@zang2011anonymization]
+    - must be coarse in either the time domain or the space domain
+- even partial location data can be used to infer the location
+    - like altitude information from fitness tracker applications [@meteriz2022learning]
+- the top four locations is enough to stand out from the crowd [@de2013unique]
+    - works almost like a fingerprint
+
+## distinguishable by top four locations
+
+:::::: {.r-stack}
+::: {.fragment .fade-out fragment-index=1}
+| location | 500 m × 500 m | 1 km × 1 km | 2 km × 2 km | 4 km × 4 km |
+|---------:|--------------:|------------:|------------:|------------:|
+|        4 |         99998 |
+|        3 |             2 |
+|        2 |             0 |
+|        1 |             0 |
+
+:::
+::: {.fragment .current-visible fragment-index=1}
+| location | 500 m × 500 m | 1 km × 1 km | 2 km × 2 km | 4 km × 4 km |
+|---------:|--------------:|------------:|------------:|------------:|
+|        4 |         99998 |       35469 |       12882 |        5090 |
+|        3 |             2 |       48228 |       42323 |       28457 |
+|        2 |             0 |       15582 |       38548 |       50987 |
+|        1 |             0 |         721 |        6247 |       15466 |
+
+:::
+::::::
+
+::: {.mt-4 .fragment fragment-index=2}
+there's a trade-off between privacy preservation and researchers' interest of working with granular mobility data
+:::
+
 # observation period {background="#ebcb8b40"}
 
 a follow-up study of Abhishek Kumar Mishra, Mathieu Cunche, and Héber&nbsp;H.&nbsp;Arcolezi inferred the observation period [@mishra2025breaking]
@@ -646,5 +682,5 @@ read the paper:<br>[Scientific Reports 14, 30948 (2024)](https://doi.org/10.1038
 
 # references {visibility=uncounted}
 
-::: {#refs .text-smaller}
+::: {#refs .text-size-1 .text-align-left}
 :::
