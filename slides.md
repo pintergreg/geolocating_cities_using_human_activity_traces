@@ -593,7 +593,7 @@ Dallas--Fort Worth
 |        1 |             0 |
 
 :::
-::: {.fragment .current-visible fragment-index=1}
+::: {.fragment  fragment-index=1}
 | location | 500 m × 500 m | 1 km × 1 km | 2 km × 2 km | 4 km × 4 km |
 |---------:|--------------:|------------:|------------:|------------:|
 |        4 |         99998 |       35469 |       12882 |        5090 |
@@ -604,9 +604,61 @@ Dallas--Fort Worth
 :::
 ::::::
 
-::: {.mt-4 .fragment fragment-index=2}
+::: {.mt-3 .fragment fragment-index=2}
 there's a trade-off between privacy preservation and researchers' interest of working with granular mobility data
+
+distinguishing does not mean identifying[, but with additional information that could happen as well, espeally for famous people]{.fragment fragmen-index=3 .text-color-aurora1}
 :::
+
+## how could the privacy be preserved?
+
+- exclude location information completely
+- add noise to (a part of) the locations
+- or add fake appearances
+
+## adding noise
+
+- Gaussian noise to every location
+    - with standard deviation of 250, 500, 1000 (in the figure), 2000 meters
+
+:::::::::::: {.columns}
+::::::::: {.column width="50%"}
+![](figures/before_noise.svg){width=350}
+
+:::::::::
+::::::::: {.column width="50%"}
+![](figures/noise_as_blur.svg){width=350 preview-image="figures/noise_as_blur.svg" preview-fit="contain"}
+
+:::::::::
+::::::::::::
+
+
+## geolocating after noise addition
+
+::: {.text-smaller}
+Euclidean distance between the upper-left corner of the observation area and the result of the template matching operation (in meters)
+:::
+
+:::::::::::: {.columns}
+::::::::: {.column width="50%"}
+![Toronto](figures/noise_evaluation_toronto.svg)
+
+:::::::::
+::::::::: {.column width="50%"}
+![London](figures/noise_evaluation_london.svg)
+
+:::::::::
+::::::::::::
+
+
+
+## what did we learn so far?
+
+1. human activity is closely linked to urban areas
+2. even if the activity is transformed to a virtual plane (blind map)<br>the city is geolocatable
+    - even strong discretization
+    - or noise addition
+
 
 # observation period {background="#ebcb8b40"}
 
