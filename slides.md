@@ -442,6 +442,136 @@ Dallas--Fort Worth
 
 <!-- 1. with enough location data, the geographic distribution of the activities will describe the urban area -->
 
+# upscaling {visibility="hidden"}
+
+:::::::::::: {.columns}
+::::::::: {.column width="55%" .mt-2}
+- spatial discretization of the mobility data is a 500 m × 500 m grid
+- what if a coarser grid was used?
+    - could it prevent the geolocation?
+
+<!--
+- simulate a 1 km × 1 km grid by summing 2×2 rasters
+- simulate a 2 km × 2 km grid by summing 4×4 rasters
+- simulate a 4 km × 4 km grid by summing 8×8 rasters
+-->
+
+<!--
+- sum 2×2 rasters to simulate a 1 km × 1 km grid
+- sum 4×4 rasters to simulate a 2 km × 2 km grid
+- sum 8×8 rasters to simulate a 4 km × 4 km grid
+-->
+
+
+
+:::::::::
+::::::::: {.column width="45%"}
+![](figures/upscaling/upscaling.drawio.svg)
+
+:::::::::
+::::::::::::
+
+|merging|width (m)|resolution|
+|:----:|----:|:-------:|
+| --  |  500|200×200|
+|2 × 2| 1000|100×100|
+|4 × 4| 2000| 50×50 |
+|8 × 8| 2000| 25×25 |
+
+## upscaling
+
+:::::::::::: {.columns}
+::::::::: {.column width="55%" .mt-2}
+- spatial discretization of the mobility data is a 500 m × 500 m grid
+- what if a coarser grid was used?
+    - could it prevent the geolocation?
+
+:::::::::
+::::::::: {.column width="45%"}
+![](figures/upscaling/upscaling.drawio.svg)
+
+:::::::::
+::::::::::::
+
+:::::::::::: {.columns .fragment}
+::::::::: {.column width="50%"}
+![](figures/upscaling/original.png){height=300}
+
+:::::::::
+::::::::: {.column width="50%"}
+![](figures/upscaling/rescaled_2.png){height=300}
+
+:::::::::
+::::::::::::
+
+## upscaled geolocation
+
+:::::::::::: {.columns}
+::::::::: {.column width="33%"}
+[100×100 pixel]{.text-smaller}
+
+<!-- ![](figures/upscaling/rescaled_2.png){height=100} -->
+![](figures/upscaling/activity_binary_1000_1000.png){height=100}
+
+:::::::::
+::::::::: {.column width="33%" .fragment fragment-index=1}
+[50 × 50 pixel]{.text-smaller}
+
+<!-- ![](figures/upscaling/rescaled_4.png){height=50} -->
+![](figures/upscaling/activity_binary_2000_2000.png){height=50}
+
+:::::::::
+::::::::: {.column width="33%" .fragment fragment-index=2}
+[25 × 25 pixel]{.text-smaller}
+
+:::::: {.r-stack}
+<!-- ![](figures/upscaling/rescaled_8.png){height=25} -->
+::: {}
+![&nbsp;](figures/upscaling/activity_binary_4000_4000.png){height=25}
+:::
+
+::: {.fragment fragment-index=3 .current-visible}
+![threshold = 75](figures/upscaling/activity_binary_4000_4000.png){height=25}
+:::
+
+::: {.fragment fragment-index=4 .text-color-aurora1}
+![threshold = 375](figures/upscaling/activity_binary_4000_4000_v2.png){height=25 preview-image="figures/upscaling/activity_binary_4000_4000_comparison.png" preview-fit="contain"}
+:::
+::::::
+:::::::::
+::::::::::::
+
+:::::::::::: {.columns}
+::::::::: {.column width="33%"}
+![](figures/upscaling/location_1000_1000.png)
+
+[1 km × 1 km discretization]{.text-smaller}
+
+:::::::::
+::::::::: {.column width="33%".fragment fragment-index=1}
+![](figures/upscaling/location_2000_2000.png)
+
+[2 km × 2 km discretization]{.text-smaller}
+
+:::::::::
+::::::::: {.column width="33%" .r-stack .fragment fragment-index=2}
+::: {}
+![](figures/upscaling/location_4000_4000.png)
+
+[4 km × 4 km discretization]{.text-smaller}
+
+:::
+::: {.fragment fragment-index=4}
+![](figures/upscaling/location_4000_4000_v2.png)
+
+[4 km × 4 km discretization]{.text-smaller}
+
+:::
+:::::::::
+::::::::::::
+
+## why does upscaling even matter?
+
 # observation period {background="#ebcb8b40"}
 
 a follow-up study of Abhishek Kumar Mishra, Mathieu Cunche, and Héber&nbsp;H.&nbsp;Arcolezi inferred the observation period [@mishra2025breaking]
