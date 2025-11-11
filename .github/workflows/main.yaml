@@ -20,7 +20,7 @@ jobs:
 
             - name: compile presentation
               run: |
-                  ruby build.rb
+                  ruby build.rb -m slides.md
                   mkdir public
                   cp slides.html public/index.html
 
