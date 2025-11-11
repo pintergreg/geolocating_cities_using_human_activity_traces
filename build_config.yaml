@@ -7,6 +7,7 @@ css:
     - "assets/BeerSlider.css"
     - "assets/nord.css"
     - "assets/helpers.css"
+    - "assets/nord_helpers.css"
     - "assets/custom.css"
     - "assets/fontawesome/css/fontawesome.min.css"
     - "assets/fontawesome/css/solid.min.css"

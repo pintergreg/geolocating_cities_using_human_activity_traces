@@ -1,0 +1,88 @@
+/* :root {
+  --r-background-color: #{$backgroundColor};
+  --r-main-font: #{$mainFont};
+  --r-main-font-size: #{$mainFontSize};
+  --r-main-color: #{$mainColor};
+  --r-block-margin: #{$blockMargin};
+  --r-heading-margin: #{$headingMargin};
+  --r-heading-font: #{$headingFont};
+  --r-heading-color: #{$headingColor};
+  --r-heading-line-height: #{$headingLineHeight};
+  --r-heading-letter-spacing: #{$headingLetterSpacing};
+  --r-heading-text-transform: #{$headingTextTransform};
+  --r-heading-text-shadow: #{$headingTextShadow};
+  --r-heading-font-weight: #{$headingFontWeight};
+  --r-heading1-text-shadow: #{$heading1TextShadow};
+  --r-heading1-size: #{$heading1Size};
+  --r-heading2-size: #{$heading2Size};
+  --r-heading3-size: #{$heading3Size};
+  --r-heading4-size: #{$heading4Size};
+  --r-code-font: #{$codeFont};
+  --r-link-color: #{$linkColor};
+  --r-link-color-dark: #{color.scale( $linkColor, $lightness: -15% )};
+  --r-link-color-hover: #{$linkColorHover};
+  --r-selection-background-color: #{$selectionBackgroundColor};
+  --r-selection-color: #{$selectionColor};
+  --r-overlay-element-bg-color: #{$overlayElementBgColor};
+  --r-overlay-element-fg-color: #{$overlayElementFgColor};
+} */
+:root {
+  --r-heading1-size: 2.25rem;
+  --r-heading2-size: 2.25rem;
+  --r-background-color: #eceff4;
+  --r-main-color: #2e3440;
+  --r-overlay-element-bg-color: #eceff4;
+  --r-overlay-element-fg-color:  #2e3440;
+  --r-selection-color: #2e3440;
+  --r-selection-background-color: #88c0d0;
+  --r-link-color: #5e81ac;
+  --r-heading-color: #2e3440;
+  --r-main-font-size: 1.75rem;
+  --r-block-margin: 1rem;
+}
+figcaption {
+    font-size: smaller;
+}
+#title-slide {
+    color: var(--nord6);
+}
+#title-slide h1.title, .as-main-title h1 {
+    color: #88c0d0;
+    font-weight: 400;
+    font-size: 3rem;
+}
+
+.frame {
+  border: 1px solid var(--nord3);
+}
+.text-color-light-shadowed {
+  color:  #eceff4;
+  text-shadow: 2px 2px 4px #2e3440;
+}
+.citation {
+color: var(--nord11);
+}
+.r-overlay-content{
+  background: var(--nor1);
+}
+li::marker {
+  color: var(--nord10);
+}
+
+.beer-handle {
+  background: #2d2d2d9f;
+  color: white;
+}
+.beer-range:focus~.beer-handle {
+  background: #2d2d2dbf;
+}
+.beer-reveal[data-beer-label]:after,
+.beer-slider[data-beer-label]:after {
+  padding: 0.35rem;
+  background: #2d2d2dAf;
+  color: white;
+  font-size: smaller;
+}
+.link-color a {
+  color: #88c0d0;
+}
