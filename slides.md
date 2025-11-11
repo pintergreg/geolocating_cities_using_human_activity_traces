@@ -535,7 +535,7 @@ Dallas--Fort Worth
 :::
 
 ::: {.fragment fragment-index=4 .text-color-aurora1}
-![threshold = 375](figures/upscaling/activity_binary_4000_4000_v2.png){height=25 preview-image="figures/upscaling/activity_binary_4000_4000_comparison.png" preview-fit="contain"}
+![threshold = 375](figures/upscaling/activity_binary_4000_4000_v2.png){height=25 preview-image="figures/upscaling/activity_binary_4000_4000_comparison_large.png" preview-fit="contain"}
 :::
 ::::::
 :::::::::

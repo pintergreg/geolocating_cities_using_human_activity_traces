@@ -63,7 +63,7 @@ figcaption {
 color: var(--nord11);
 }
 .r-overlay-content{
-  background: var(--nor1);
+  background: var(--nord1);
 }
 li::marker {
   color: var(--nord10);
