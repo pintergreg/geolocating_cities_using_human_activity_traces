@@ -770,6 +770,158 @@ map)<br>the city is geolocatable</li>
 <!-- 1. with enough location data, the geographic distribution of the activities will describe the urban area -->
 </section></section>
 <section>
+<section id="upscaling" class="title-slide slide level1"
+data-visibility="hidden">
+<h1 data-visibility="hidden">upscaling</h1>
+<div class="columns">
+<div class="column mt-2" style="width:55%;">
+<ul>
+<li>spatial discretization of the mobility data is a 500 m × 500 m
+grid</li>
+<li>what if a coarser grid was used?
+<ul>
+<li>could it prevent the geolocation?</li>
+</ul></li>
+</ul>
+<!--
+- simulate a 1 km × 1 km grid by summing 2×2 rasters
+- simulate a 2 km × 2 km grid by summing 4×4 rasters
+- simulate a 4 km × 4 km grid by summing 8×8 rasters
+-->
+<!--
+- sum 2×2 rasters to simulate a 1 km × 1 km grid
+- sum 4×4 rasters to simulate a 2 km × 2 km grid
+- sum 8×8 rasters to simulate a 4 km × 4 km grid
+-->
+</div><div class="column" style="width:45%;">
+<p><img data-src="figures/upscaling/upscaling.drawio.svg" /></p>
+</div>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">merging</th>
+<th style="text-align: right;">width (m)</th>
+<th style="text-align: center;">resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">–</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: center;">200×200</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2 × 2</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: center;">100×100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4 × 4</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: center;">50×50</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8 × 8</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: center;">25×25</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="upscaling-1" class="slide level2">
+<h2>upscaling</h2>
+<div class="columns">
+<div class="column mt-2" style="width:55%;">
+<ul>
+<li>spatial discretization of the mobility data is a 500 m × 500 m
+grid</li>
+<li>what if a coarser grid was used?
+<ul>
+<li>could it prevent the geolocation?</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="figures/upscaling/upscaling.drawio.svg" /></p>
+</div>
+</div>
+<div class="columns fragment">
+<div class="column" style="width:50%;">
+<p><img data-src="figures/upscaling/original.png" height="300" /></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="figures/upscaling/rescaled_2.png" height="300" /></p>
+</div>
+</div>
+</section>
+<section id="upscaled-geolocation" class="slide level2">
+<h2>upscaled geolocation</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><span class="text-smaller">100×100 pixel</span></p>
+<!-- ![](figures/upscaling/rescaled_2.png){height=100} -->
+<p><img data-src="figures/upscaling/activity_binary_1000_1000.png"
+height="100" /></p>
+</div><div class="column fragment" data-fragment-index="1"
+style="width:33%;">
+<p><span class="text-smaller">50 × 50 pixel</span></p>
+<!-- ![](figures/upscaling/rescaled_4.png){height=50} -->
+<p><img data-src="figures/upscaling/activity_binary_2000_2000.png"
+height="50" /></p>
+</div><div class="column fragment" data-fragment-index="2"
+style="width:33%;">
+<p><span class="text-smaller">25 × 25 pixel</span></p>
+<div class="r-stack">
+<!-- ![](figures/upscaling/rescaled_8.png){height=25} -->
+<div>
+<figure>
+<img data-src="figures/upscaling/activity_binary_4000_4000.png"
+height="25" alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
+</figure>
+</div>
+<div class="fragment current-visible" data-fragment-index="3">
+<figure>
+<img data-src="figures/upscaling/activity_binary_4000_4000.png"
+height="25" alt="threshold = 75" />
+<figcaption aria-hidden="true">threshold = 75</figcaption>
+</figure>
+</div>
+<div class="fragment text-color-aurora1" data-fragment-index="4">
+<figure>
+<img data-src="figures/upscaling/activity_binary_4000_4000_v2.png"
+data-preview-image="figures/upscaling/activity_binary_4000_4000_comparison.png"
+data-preview-fit="contain" height="25" alt="threshold = 375" />
+<figcaption aria-hidden="true">threshold = 375</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><img data-src="figures/upscaling/location_1000_1000.png" /></p>
+<p><span class="text-smaller">1 km × 1 km discretization</span></p>
+</div><div class="column fragment" data-fragment-index="1"
+style="width:33%;">
+<p><img data-src="figures/upscaling/location_2000_2000.png" /></p>
+<p><span class="text-smaller">2 km × 2 km discretization</span></p>
+</div><div class="column r-stack fragment" data-fragment-index="2"
+style="width:33%;">
+<div>
+<p><img data-src="figures/upscaling/location_4000_4000.png" /></p>
+<p><span class="text-smaller">4 km × 4 km discretization</span></p>
+</div>
+<div class="fragment" data-fragment-index="4">
+<p><img data-src="figures/upscaling/location_4000_4000_v2.png" /></p>
+<p><span class="text-smaller">4 km × 4 km discretization</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="why-does-upscaling-even-matter" class="slide level2">
+<h2>why does upscaling even matter?</h2>
+</section></section>
+<section>
 <section id="observation-period" class="title-slide slide level1"
 data-background="#ebcb8b40">
 <h1 data-background="#ebcb8b40">observation period</h1>
