@@ -1,0 +1,31 @@
+name: CI
+
+on:
+    push:
+        branches: ["main"]
+
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-24.04
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: install dependencies
+              run: |
+                  sudo apt-get install -y ruby pandoc
+
+            - name: compile presentaion
+              run: |
+                  ruby build.rb
+                  mkdir public
+                  cp slides.html public/index.html
+
+            - name: deploy
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                  personal_token: ${{ secrets.PERSONAL_TOKEN }}
+                  publish_dir: ./public
