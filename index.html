@@ -889,7 +889,7 @@ height="25" alt="threshold = 75" />
 <div class="fragment text-color-aurora1" data-fragment-index="4">
 <figure>
 <img data-src="figures/upscaling/activity_binary_4000_4000_v2.png"
-data-preview-image="figures/upscaling/activity_binary_4000_4000_comparison.png"
+data-preview-image="figures/upscaling/activity_binary_4000_4000_comparison_large.png"
 data-preview-fit="contain" height="25" alt="threshold = 375" />
 <figcaption aria-hidden="true">threshold = 375</figcaption>
 </figure>
@@ -922,12 +922,129 @@ style="width:33%;">
 <h2>why does upscaling even matter?</h2>
 </section></section>
 <section>
+<section id="privacy-considerations" class="title-slide slide level1">
+<h1>privacy considerations</h1>
+<ul>
+<li>location data is likely to lead to privacy risks <span
+class="citation" data-cites="zang2011anonymization">[6]</span>
+<ul>
+<li>must be coarse in either the time domain or the space domain</li>
+</ul></li>
+<li>even partial location data can be used to infer the location
+<ul>
+<li>like altitude information from fitness tracker applications <span
+class="citation" data-cites="meteriz2022learning">[7]</span></li>
+</ul></li>
+<li>the top four locations is enough to stand out from the crowd <span
+class="citation" data-cites="de2013unique">[8]</span>
+<ul>
+<li>works almost like a fingerprint</li>
+</ul></li>
+</ul>
+</section>
+<section id="distinguishable-by-top-four-locations"
+class="slide level2">
+<h2>distinguishable by top four locations</h2>
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">location</th>
+<th style="text-align: right;">500 m × 500 m</th>
+<th style="text-align: right;">1 km × 1 km</th>
+<th style="text-align: right;">2 km × 2 km</th>
+<th style="text-align: right;">4 km × 4 km</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">99998</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment current-visible" data-fragment-index="1">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">location</th>
+<th style="text-align: right;">500 m × 500 m</th>
+<th style="text-align: right;">1 km × 1 km</th>
+<th style="text-align: right;">2 km × 2 km</th>
+<th style="text-align: right;">4 km × 4 km</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">99998</td>
+<td style="text-align: right;">35469</td>
+<td style="text-align: right;">12882</td>
+<td style="text-align: right;">5090</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">48228</td>
+<td style="text-align: right;">42323</td>
+<td style="text-align: right;">28457</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">15582</td>
+<td style="text-align: right;">38548</td>
+<td style="text-align: right;">50987</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">721</td>
+<td style="text-align: right;">6247</td>
+<td style="text-align: right;">15466</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="mt-4 fragment" data-fragment-index="2">
+<p>there’s a trade-off between privacy preservation and researchers’
+interest of working with granular mobility data</p>
+</div>
+</section></section>
+<section>
 <section id="observation-period" class="title-slide slide level1"
 data-background="#ebcb8b40">
 <h1 data-background="#ebcb8b40">observation period</h1>
 <p>a follow-up study of Abhishek Kumar Mishra, Mathieu Cunche, and
 Héber H. Arcolezi inferred the observation period <span class="citation"
-data-cites="mishra2025breaking">[6]</span></p>
+data-cites="mishra2025breaking">[9]</span></p>
 <div class="r-stack">
 <p><img data-src="figures/daily_activity.svg" width="750" /></p>
 <p><img data-src="figures/daily_activity_annotated_weekend.svg"
@@ -974,16 +1091,16 @@ data-background="#ebcb8b40">
 <div class="fragment" data-fragment-index="1">
 <figure>
 <img data-src="figures/port_messe_nagoya_activity_label.svg"
-alt="events collected by Mishra et al. [6]" />
+alt="events collected by Mishra et al. [9]" />
 <figcaption aria-hidden="true">events collected by Mishra et al. <span
-class="citation" data-cites="mishra2025breaking">[6]</span></figcaption>
+class="citation" data-cites="mishra2025breaking">[9]</span></figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="fragment" data-fragment-index="1">
 <p><em>day 0</em> is 15 September 2019 <span class="citation"
-data-cites="mishra2025breaking">[6]</span></p>
+data-cites="mishra2025breaking">[9]</span></p>
 </div>
 </section></section>
 <section id="takeaway" class="title-slide slide level1">
@@ -1030,7 +1147,8 @@ data-src="assets/qr_code_paper.png" width="350" /></a></p>
 <section id="references" class="title-slide slide level1"
 data-visibility="uncounted">
 <h1 data-visibility="uncounted">references</h1>
-<div id="refs" class="text-smaller references csl-bib-body" role="list">
+<div id="refs"
+class="text-size-1 text-align-left references csl-bib-body" role="list">
 <div id="ref-chen_2022_6369319" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[1] </div><div class="csl-right-inline">Z.
 Chen, <span>“<a
@@ -1065,8 +1183,29 @@ class="csl-right-inline">Official Statistics of Japan, <span>“<a
 href="https://www.e-stat.go.jp/en/stat-search/files?page=1&amp;layout=datalist&amp;toukei=00200521&amp;tstat=000001136464&amp;cycle=0&amp;year=20200&amp;month=24101210&amp;tclass1=000001136466">Population
 census 2020</a>.”</span> 2020.</div>
 </div>
+<div id="ref-zang2011anonymization" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">H.
+Zang and J. Bolot, <span>“Anonymization of location data does not work:
+A large-scale measurement study,”</span> in <em>Proceedings of the 17th
+annual international conference on mobile computing and networking</em>,
+2011, pp. 145–156.</div>
+</div>
+<div id="ref-meteriz2022learning" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">U.
+Meteriz-Yildiran, N. F. Yildiran, J. Kim, and D. Mohaisen,
+<span>“Learning location from shared elevation profiles in fitness apps:
+A privacy perspective,”</span> <em>IEEE Transactions on Mobile
+Computing</em>, 2022.</div>
+</div>
+<div id="ref-de2013unique" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div
+class="csl-right-inline">Y.-A. De Montjoye, C. A. Hidalgo, M. Verleysen,
+and V. D. Blondel, <span>“Unique in the crowd: The privacy bounds of
+human mobility,”</span> <em>Scientific reports</em>, vol. 3, no. 1, pp.
+1–5, 2013.</div>
+</div>
 <div id="ref-mishra2025breaking" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">A.
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">A.
 K. Mishra, M. Cunche, and H. H. Arcolezi, <span>“Breaking anonymity at
 scale: Re-identifying the trajectories of 100K real users in
 japan,”</span> <em>arXiv preprint arXiv:2506.05611</em>, 2025.</div>
