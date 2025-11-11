@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Gergő Pintér, PhD">
+  <title>geolocating cities using human activity traces</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="assets/reveal.js-5.2.1//dist/reset.css">
+  <link rel="stylesheet" href="assets/reveal.js-5.2.1//dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="assets/reveal.js-5.2.1//dist/theme/solarized.css" id="theme">
+  <link rel="stylesheet" href="assets/BeerSlider.css"/>
+  <link rel="stylesheet" href="assets/nord.css"/>
+  <link rel="stylesheet" href="assets/helpers.css"/>
+  <link rel="stylesheet" href="assets/nord_helpers.css"/>
+  <link rel="stylesheet" href="assets/custom.css"/>
+  <link rel="stylesheet" href="assets/fontawesome/css/fontawesome.min.css"/>
+  <link rel="stylesheet" href="assets/fontawesome/css/solid.min.css"/>
+  <link rel="stylesheet" href="assets/fontawesome/css/brands.min.css"/>
+  <script src="assets/BeerSlider.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#2e3440" data-background-image="assets/CC-BY.svg" data-background-position="1.5rem
+calc(100% - 1.5rem)" data-background-size="125px">
+  <h1 class="title">geolocating cities using human activity traces</h1>
+  <p class="author">Gergő Pintér<span class="text-color-frost1">,</span>
+PhD</p>
+  <p class="institute"><p>ANETI Lab <span
+class="text-color-frost1">/</span> CIAS <br> Department of Network
+Science <span class="text-color-frost1">/</span> IDAIS <br> Corvinus
+University of Budapest</p></p>
+  <p class="date"><p>gergo.pinter<span
+class="text-color-frost1">@</span>uni-corvinus.hu</p></p>
+</section>
+
+<section>
+<section id="section" class="title-slide slide level1">
+<h1></h1>
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+<figure>
+<img data-src="figures/bud_empty.svg" height="550" alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
+</figure>
+</div>
+<div class="fragment current-visible" data-fragment-index="1">
+<figure>
+<img data-src="figures/bud_05pct.svg" height="550"
+alt="37 data points from Weeplace checkins [1]" />
+<figcaption aria-hidden="true">37 data points from Weeplace checkins
+<span class="citation"
+data-cites="chen_2022_6369319">[1]</span></figcaption>
+</figure>
+</div>
+<div class="fragment current-visible" data-fragment-index="2">
+<figure>
+<img data-src="figures/bud_05pct_zoom.svg" height="550"
+alt="37 data points (0.5% of unique places)" />
+<figcaption aria-hidden="true">37 data points (0.5% of unique
+places)</figcaption>
+</figure>
+</div>
+<div class="fragment current-visible" data-fragment-index="3">
+<figure>
+<img data-src="figures/bud_05pct_zoom_map.svg" height="550"
+alt="37 data points (0.5% of unique places)" />
+<figcaption aria-hidden="true">37 data points (0.5% of unique
+places)</figcaption>
+</figure>
+</div>
+<div class="fragment current-visible" data-fragment-index="4">
+<figure>
+<img data-src="figures/bud_2pct.svg" height="550"
+alt="70 data points (2% of unique places)" />
+<figcaption aria-hidden="true">70 data points (2% of unique
+places)</figcaption>
+</figure>
+</div>
+<div class="fragment current-visible" data-fragment-index="5">
+<figure>
+<img data-src="figures/bud_20pct.svg" height="550"
+alt="697 data points (20% of unique places)" />
+<figcaption aria-hidden="true">697 data points (20% of unique
+places)</figcaption>
+</figure>
+</div>
+<div class="fragment" data-fragment-index="6">
+<figure>
+<img data-src="figures/bud_100pct.svg" height="550"
+alt="3485 data points (all unique places)" />
+<figcaption aria-hidden="true">3485 data points (all unique
+places)</figcaption>
+</figure>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>let’s play game in which I show you maps, and you can guess the
+city</li>
+<li></li>
+</ul>
+</aside>
+</section>
+<section id="human-activity-is-tightly-connected-to-the-urban-areas"
+class="slide level2">
+<h2>human activity is tightly connected to the urban areas</h2>
+<ul>
+<li>only ~700 data points and Budapest is almost recognizable</li>
+<li>~3500 data points reveals the silhouette of the city
+<ul>
+<li>although the distribution is uneven</li>
+</ul></li>
+</ul>
+<!--::: {.r-fit-text}
+human activity is tightly connected to the urban areas
+:::-->
+</section>
+<section id="section-1" class="slide level2"
+data-background-image="figures/nasa.jpg">
+<h2 data-background-image="figures/nasa.jpg"></h2>
+<div class="text-color-light-shadowed mt-8">
+<p>photo by NASA | NASA’s Earth Observatory</p>
+</div>
+</section>
+<section id="section-2" class="slide level2"
+data-background-image="figures/central_europe.png">
+<h2 data-background-image="figures/central_europe.png"></h2>
+<aside class="notes">
+<p>mobile positioning data my not represent everyone, but we can clearly
+see the main hotspots of human activity</p>
+</aside>
+<!--## {data-background-image="figures/central_europe_light.png"}
+
+- some cities, regions are underrepresented
+    - rural settlements
+- some people may not represented in the data
+- mobile positioning data may not represent everyone, but the hotsports of human activity are already
+    - more and more data is collected
+    -->
+</section></section>
+<section>
+<section id="yjmob100k" class="title-slide slide level1">
+<h1>YJMob100K</h1>
+<ul>
+<li>data is from the Yahoo! Japan smartphone application</li>
+<li>published as open data in 2023 <span class="citation"
+data-cites="yabe_2024_10836269">[2]</span>
+<ul>
+<li>as a part of the HuMob Challenge 2023 <span class="citation"
+data-cites="yabe2023humob">[3]</span></li>
+</ul></li>
+<li>follows 100,000 people</li>
+<li>during consecutive 75 days
+<ul>
+<li>not known which days</li>
+</ul></li>
+<li>in a 100 km by 100 km area</li>
+<li><em>somewhere</em> in Japan</li>
+</ul>
+</section>
+<section id="data-sample" class="slide level2">
+<h2>data sample</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">uid</th>
+<th style="text-align: right;">d</th>
+<th style="text-align: right;">t</th>
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">86</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">86</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">86</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">86</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">89</td>
+</tr>
+</tbody>
+</table>
+<p>where d is day, t is time (0-47), x and y is the location in a 200 ×
+200 grid</p>
+</section>
+<section id="visualizing-mobility-data" class="slide level2">
+<h2>visualizing mobility data</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<figure>
+<img data-src="figures/activity_heatmap.png" class="frame"
+alt="activity count (log)" />
+<figcaption aria-hidden="true">activity count (log)</figcaption>
+</figure>
+</div><div class="column" style="width:50%;">
+<figure>
+<img data-src="figures/user_heatmap.png" class="frame"
+data-preview-image="figures/user_heatmap_v2.png"
+data-preview-fit="contain" alt="unique user count (log)" />
+<figcaption aria-hidden="true">unique user count (log)</figcaption>
+</figure>
+</div>
+</div>
+<div class="text-smaller">
+<p>reproductions of figure 8 <span class="citation"
+data-cites="yabe2024yjmob100k">[4]</span></p>
+</div>
+</section></section>
+<section>
+<section id="finding-out-which-city-it-is"
+class="title-slide slide level1">
+<h1>finding out which city it is</h1>
+<ol type="1">
+<li>Japan is an island country</li>
+<li>the largest cities are on the shores</li>
+<li>100 km by 100 km observation area</li>
+<li>some low activity part of the heatmap must be water</li>
+</ol>
+</section>
+<section id="finding-out-which-city-it-is-largest-cities"
+class="slide level2">
+<h2>finding out which city it is – largest cities</h2>
+<div class="columns">
+<div class="column fragment" style="width:33%;">
+<figure>
+<img data-src="figures/tokyo_and_yokohama_gamma-50.png"
+data-preview-image="figures/tokyo_and_yokohama_gamma-50.png"
+data-preview-fit="contain" alt="Tokyo (1) and Yokohama (2)" />
+<figcaption aria-hidden="true">Tokyo (1) and Yokohama (2)</figcaption>
+</figure>
+</div><div class="column fragment" style="width:33%;">
+<figure>
+<img data-src="figures/osaka_gamma-50.png"
+data-preview-image="figures/osaka_gamma-50.png"
+data-preview-fit="contain" alt="Osaka (3)" />
+<figcaption aria-hidden="true">Osaka (3)</figcaption>
+</figure>
+</div><div class="column fragment" style="width:33%;">
+<figure>
+<img data-src="figures/nagoya_gamma-50.png"
+data-preview-image="figures/nagoya_gamma-50.png"
+data-preview-fit="contain" alt="Nagoya (4)" />
+<figcaption aria-hidden="true">Nagoya (4)</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="finding-out-which-city-it-is-nagoya" class="slide level2">
+<h2>finding out which city it is – Nagoya</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><img data-src="figures/nagoya_gamma-50.png"
+data-preview-image="figures/nagoya_gamma-50.png"
+data-preview-fit="contain" /></p>
+</div><div class="column" style="width:33%;">
+<div class="r-stack">
+<div>
+<p><img data-src="figures/user_heatmap.png" /></p>
+<!-- <i class="fa-solid"></i> -->
+<p><img data-src="assets/empty.drawio.svg" width="48" /></p>
+</div>
+<div class="fragment current-visible" data-fragment-index="2">
+<p><img data-src="figures/user_heatmap_rot.png" /></p>
+<!-- <i class="fa-solid fa-rotate-left"></i> -->
+<p><img data-src="assets/rotate.drawio.svg" width="48" /></p>
+</div>
+<div class="fragment" data-fragment-index="3">
+<p><img data-src="figures/user_heatmap_rotrot.png" /></p>
+<!-- <i class="fa-solid fa-rotate-left"></i><i class="fa-solid fa-rotate-left"></i> -->
+<p><img data-src="assets/rotate.drawio.svg" width="48" /> <img
+data-src="assets/rotate.drawio.svg" width="48" /></p>
+</div>
+</div>
+</div><div class="column fragment" data-fragment-index="4"
+style="width:33%;">
+<p><img data-src="figures/user_heatmap_fixed.png" /></p>
+<!-- <i class="fa-solid fa-arrows-left-right"></i> -->
+<!-- <i class="fa-solid fa-arrows-left-right-to-line"></i> -->
+<p><img data-src="assets/mirror.drawio.svg" width="48" /></p>
+</div>
+</div>
+<div class="fragment" data-fragment-index="5">
+<p><span class="text-color-aurora1">problem</span>: the heatmap contains
+no geographic information</p>
+</div>
+</section></section>
+<section>
+<section id="template-matching" class="title-slide slide level1">
+<h1>template matching</h1>
+<figure>
+<img data-src="figures/Template_Matching.png" class="frame"
+alt="via Wikipedia by Laserlicht and Benjamin Watson | CC BY 4.0" />
+<figcaption aria-hidden="true">via <a
+href="https://en.wikipedia.org/wiki/File:Template_Matching.png">Wikipedia</a>
+by Laserlicht and Benjamin Watson | <a
+href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY
+4.0</a></figcaption>
+</figure>
+</section>
+<section id="applying-template-matching-to-the-problem"
+class="slide level2">
+<h2>applying template matching to the problem</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>a map is required where 1 pixel is 500</li>
+</ul>
+<p><img data-src="figures/large_voyager_gamma-50.png" /></p>
+</div><div class="column" style="width:40%;">
+<ul>
+<li>template: 200×200 image</li>
+<li>1 pixel is 500 m</li>
+</ul>
+<p><img data-src="figures/activity_heatmap_fixed.png" width="200" /></p>
+</div>
+</div>
+</section>
+<section id="preparing-the-template-thresholding" class="slide level2">
+<h2>preparing the template – thresholding</h2>
+<div class="columns">
+<div class="column mt-1" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+<figure>
+<img data-src="figures/activity_histogram.svg" alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
+</figure>
+</div>
+<div class="fragment current-visible" data-fragment-index="1">
+<figure>
+<img data-src="figures/activity_histogram_threshold.svg"
+alt="threshold = 75" />
+<figcaption aria-hidden="true">threshold = 75</figcaption>
+</figure>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+<p><img data-src="figures/activity_heatmap_fixed.png" /></p>
+</div>
+<div class="fragment current-visible" data-fragment-index="1">
+<p><img data-src="figures/activity_cut.png" /></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="geolocating-with-template-matching" class="slide level2">
+<h2>geolocating with template matching</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+<figure>
+<img data-src="figures/geolocating/unstretched/large_500_500.png"
+width="560" alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
+</figure>
+</div>
+<div class="fragment current-visible" data-fragment-index="1">
+<figure>
+<img data-src="figures/geolocating/unstretched/location_500_500.png"
+width="560" alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
+</figure>
+</div>
+<div class="fragment current-visible" data-fragment-index="2">
+<figure>
+<img data-src="figures/geolocating/unstretched/location_explanation.png"
+width="560" alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
+</figure>
+</div>
+<div class="fragment current-visible" data-fragment-index="3">
+<figure>
+<img data-src="figures/geolocating/unstretched/template_matched.png"
+width="560" alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
+</figure>
+</div>
+</div>
+</div><div class="column text-smaller" style="width:40%;">
+<p><img data-src="figures/activity_cut_200.png" width="168" /></p>
+<div class="fragment" data-fragment-index="2">
+<ul>
+<li>relative location: 127, 358</li>
+<li>absolute
+<ul>
+<li><a href="https://spatialreference.org/ref/epsg/2449/">EPSG:2449</a>:
+-64000, -64000</li>
+<li><a href="https://spatialreference.org/ref/epsg/4326/">WGS84</a>:
+136.4619, 35.42107</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="verificating-the-geolocation" class="slide level2">
+<h2>verificating the geolocation</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img
+data-src="figures/geolocating/unstretched/template_matched.png" /></p>
+</div><div class="column" style="width:50%;">
+<p><img
+data-src="figures/geolocating/unstretched/template_matched_zoomed.png" /></p>
+</div>
+</div>
+</section>
+<section id="more-transformation-happened" class="slide level2">
+<h2>more transformation happened?</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<ul>
+<li>the grid was rotated and mirrored</li>
+<li>what if a raster is not <span
+class="text-color-aurora1">exactly</span> 500 m × 500 m?</li>
+<li>because it was also shrunk or stretched</li>
+</ul>
+<div class="fragment">
+<p>template considers one pixel as one raster of the grid</p>
+<p>it is difficult to shrink or stretch a pixel</p>
+</div>
+<div class="fragment">
+<p>the map can be shrunk and stretched <span
+class="text-color-aurora1">inversely</span></p>
+<p>the value happened to be 10% shrink in width, 10% stretch in
+height</p>
+</div>
+</div><div class="column fragment" style="width:45%;">
+<p><img
+data-src="figures/geolocating/template_matched_zoomed_500_500.png"
+data-preview-image="figures/geolocating/unstretched/template_matched_zoomed.png"
+data-preview-fit="contain" /></p>
+<p>a raster of a grid is actually 450 m × 550 m</p>
+</div>
+</div>
+</section>
+<section id="verification" class="slide level2">
+<h2>verification</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img
+data-src="figures/activity_count_coordinate_explanation_2449.png"
+class="frame" /></p>
+</div><div class="column mt-2 fragment" style="width:50%;">
+<ol type="1">
+<li>estimate user’s home location</li>
+<li>associate rasters to municipalities</li>
+<li>sum the estimated inhabitants<br>per municipalities</li>
+<li>compare with census data <span class="citation"
+data-cites="estat2020population">[5]</span></li>
+</ol>
+<div class="fragment">
+<figure>
+<img data-src="figures/population_per_city_transparent.svg"
+data-preview-image="figures/population_per_city.svg"
+data-preview-fit="contain"
+alt="correlation coefficient (Pearson’s R): 0.8879" />
+<figcaption aria-hidden="true">correlation coefficient (Pearson’s R):
+0.8879</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="robustness-check-thresholding"
+class="title-slide slide level1">
+<h1>robustness check – thresholding</h1>
+<div class="columns">
+<div class="column" style="width:25%;">
+<figure>
+<img data-src="figures/threshold/threshold_50.svg" width="200"
+alt="50" />
+<figcaption aria-hidden="true">50</figcaption>
+</figure>
+<p><img data-src="figures/threshold/activity_cut_50.png"
+class="frame" /></p>
+</div><div class="column" style="width:25%;">
+<figure>
+<img data-src="figures/threshold/threshold_500.svg" width="200"
+alt="500" />
+<figcaption aria-hidden="true">500</figcaption>
+</figure>
+<p><img data-src="figures/threshold/activity_cut_500.png"
+class="frame" /></p>
+</div><div class="column" style="width:25%;">
+<figure>
+<img data-src="figures/threshold/threshold_1000.svg" width="200"
+alt="1000" />
+<figcaption aria-hidden="true">1000</figcaption>
+</figure>
+<p><img data-src="figures/threshold/activity_cut_5000.png"
+class="frame" /></p>
+</div><div class="column" style="width:25%;">
+<figure>
+<img data-src="figures/threshold/threshold_1000.svg" width="200"
+alt="5000" />
+<figcaption aria-hidden="true">5000</figcaption>
+</figure>
+<p><img data-src="figures/threshold/activity_cut_5000.png"
+class="frame" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>I’ve said that the threshold of 75 was selected arbitrarily. Let me
+show that why that value has not too much impact on the geolocating.</p>
+</aside>
+</section>
+<section id="anchor-difference-by-threshold" class="slide level2">
+<h2>anchor difference by threshold</h2>
+<p><img data-src="figures/threshold_mod.svg" /></p>
+<div class="text-smaller narrow-table">
+<table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_25.png">25</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_50.png">50</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_100.png">100</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_200.png">200</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_300.png">300</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_400.png">400</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_500.png">500</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_600.png">600</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_700.png">700</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_800.png">800</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_900.png">900</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_1000.png">1000</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_2000.png">2000</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_3000.png">3000</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_4000.png">4000</span></th>
+<th style="text-align: right;"><span
+data-preview-image="figures/threshold/activity_cut_400_5000.png">5000</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">x</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-228</td>
+<td style="text-align: right;">-228</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">-387</td>
+<td style="text-align: right;">-387</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">y</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">149</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">79</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="different-cities-different-data" class="slide level2">
+<h2>different cities, different data</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><div id="toronto" class="beer-slider" data-beer-label="OSM" data-beer-start="100">  <img src="figures/toronto/landuse.png" width="475" />  <div class="beer-reveal" data-beer-label="MPD">    <img src="figures/toronto/activity.png" width="475" />  </div></div></p>
+<p>Toronto</p>
+</div><div class="column fragment" style="width:50%;">
+<p><div id="london" class="beer-slider" data-beer-label="OSM" data-beer-start="100">  <img src="figures/london/landuse.png" width="475" />  <div class="beer-reveal" data-beer-label="MPD">    <img src="figures/london/activity.png" width="475" />  </div></div></p>
+<p>London</p>
+</div>
+</div>
+</section>
+<section id="different-cities-different-data-1" class="slide level2">
+<h2>different cities, different data</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><div id="helsinki" class="beer-slider" data-beer-label="OSM" data-beer-start="50">  <img src="figures/helsinki/landuse.png" width="475" />  <div class="beer-reveal" data-beer-label="MPD">    <img src="figures/helsinki/activity.png" width="475" />  </div></div></p>
+<p>Helsinki</p>
+</div><div class="column" style="width:50%;">
+<p><div id="dallas" class="beer-slider" data-beer-label="OSM" data-beer-start="50">  <img src="figures/dallas/landuse.png" width="475" />  <div class="beer-reveal" data-beer-label="MPD">    <img src="figures/dallas/activity.png" width="475" />  </div></div></p>
+<p>Dallas–Fort Worth</p>
+</div>
+</div>
+</section>
+<section id="different-cities-different-data-results"
+class="slide level2">
+<h2>different cities, different data – results</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="2">
+<figure>
+<img data-src="figures/toronto/location.png" class="frame"
+alt="Toronto" />
+<figcaption aria-hidden="true">Toronto</figcaption>
+</figure>
+</div>
+<div class="fragment" data-fragment-index="2">
+<figure>
+<img data-src="figures/helsinki/location.png" class="frame"
+alt="Helsinki" />
+<figcaption aria-hidden="true">Helsinki</figcaption>
+</figure>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment current-visible" data-fragment-index="1">
+<figure>
+<img data-src="figures/london/location.png" class="frame"
+alt="London" />
+<figcaption aria-hidden="true">London</figcaption>
+</figure>
+</div>
+<div class="fragment current-visible" data-fragment-index="2">
+<figure>
+<img data-src="figures/london/location.png" class="frame"
+alt="London" />
+<figcaption aria-hidden="true">London</figcaption>
+</figure>
+</div>
+<div class="fragment" data-fragment-index="3">
+<figure>
+<img data-src="figures/dallas/location.png" class="frame"
+alt="Dallas–Fort Worth" />
+<figcaption aria-hidden="true">Dallas–Fort Worth</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-did-we-learn-so-far" class="slide level2">
+<h2>what did we learn so far?</h2>
+<ol type="1">
+<li>human activity is closely linked to urban areas</li>
+<li>even if the activity is transformed to a virtual plane (blind
+map)<br>the city is geolocatable</li>
+</ol>
+<div>
+
+</div>
+<!-- 1. with enough location data, the geographic distribution of the activities will describe the urban area -->
+</section></section>
+<section>
+<section id="observation-period" class="title-slide slide level1"
+data-background="#ebcb8b40">
+<h1 data-background="#ebcb8b40">observation period</h1>
+<p>a follow-up study of Abhishek Kumar Mishra, Mathieu Cunche, and
+Héber H. Arcolezi inferred the observation period <span class="citation"
+data-cites="mishra2025breaking">[6]</span></p>
+<div class="r-stack">
+<p><img data-src="figures/daily_activity.svg" width="750" /></p>
+<p><img data-src="figures/daily_activity_annotated_weekend.svg"
+class="fragment" data-fragment-index="1" width="750" /></p>
+<p><img data-src="figures/daily_activity_annotated_weekend_holiday.svg"
+class="fragment" data-fragment-index="2" width="750" /></p>
+<p><img data-src="figures/daily_activity_annotated.svg" class="fragment"
+data-fragment-index="3" width="750" /></p>
+</div>
+<ul>
+<li><span class="fragment" data-fragment-index="1">daily activity shows
+the weekday–weekend differences
+[<svg width="40" height="24" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="24" x="4" y="0" fill="#ebcb8b" /></svg>
+]</span></li>
+<li><span class="fragment" data-fragment-index="2">holidays
+[<svg width="40" height="24" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="24" x="4" y="0" fill="#d08770" /></svg>
+]</span>
+<ul>
+<li><span class="text-smaller fragment" data-fragment-index="2">Respect
+for the Aged Day (16/09/2019), Autumn Equinox (23/09/2019), Health and
+Sports Day (14/10/2019), Enthronement Ceremony Day (22/10/2019), and
+Culture Day (04/11/2019)</span></li>
+</ul></li>
+<li><span class="fragment" data-fragment-index="3">typhoon Hagibis made
+landfall in Japan (12 October 2019)
+[<svg width="40" height="24" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="24" x="4" y="0" fill="#bf616a" /></svg>
+]</span></li>
+</ul>
+</section>
+<section id="observation-period-verification" class="slide level2"
+data-background="#ebcb8b40">
+<h2 data-background="#ebcb8b40">observation period – verification</h2>
+<p>Port Messe Nagoya – event center</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img data-src="figures/port_messe_nagoya.png" /></p>
+</div><div class="column r-stack" style="width:60%;">
+<div>
+<figure>
+<img data-src="figures/port_messe_nagoya_activity.svg" alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
+</figure>
+</div>
+<div class="fragment" data-fragment-index="1">
+<figure>
+<img data-src="figures/port_messe_nagoya_activity_label.svg"
+alt="events collected by Mishra et al. [6]" />
+<figcaption aria-hidden="true">events collected by Mishra et al. <span
+class="citation" data-cites="mishra2025breaking">[6]</span></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="1">
+<p><em>day 0</em> is 15 September 2019 <span class="citation"
+data-cites="mishra2025breaking">[6]</span></p>
+</div>
+</section></section>
+<section id="takeaway" class="title-slide slide level1">
+<h1>takeaway</h1>
+<ol type="1">
+<li>human activity is closely linked to urban areas</li>
+<li>even if the activity is transformed to a virtual plane (blind
+map)<br>the city is geolocatable</li>
+</ol>
+</section>
+
+<section id="thanks-for-the-attention"
+class="title-slide slide level1 as-main-title"
+data-background="#2e3440">
+<h1 class="as-main-title" data-background="#2e3440">thanks for the
+attention!</h1>
+<div class="text-color-snowstorm3">
+<p>Gergő Pintér<span class="text-color-snowstorm1">,</span> <span
+class="text-color-lightblue">gergo.pinter <span
+class="text-color-frost1">@</span> uni-corvinus.hu</span><span
+class="text-color-snowstorm1">,</span> <span
+class="text-color-frost1">@</span>pintergreg<sup><a
+href="https://github.com/pintergreg"><i class="text-color-frost1 fa-brands fa-github"></i></a>
+<a
+href="https://bsky.app/profile/pintergreg.bsky.social"><i class="text-color-frost1 fa-brands fa-bluesky"></i></a></sup></p>
+</div>
+<div class="columns text-color-snowstorm3 link-color">
+<div class="column" style="width:50%;">
+<!-- this presentation is available online: [pintergreg.github.io/geolocating_cities_using_human_activity_traces](https://pintergreg.github.io/geolocating_cities_using_human_activity_traces) -->
+<p> <br> this presentation is available online:</p>
+<p><a
+href="https://pintergreg.github.io/geolocating_cities_using_human_activity_traces"><img
+data-src="assets/qr_code_slides.png" width="350" /></a></p>
+</div><div class="column" style="width:50%;">
+<p>read the paper:<br><a
+href="https://doi.org/10.1038/s41598-024-82006-5">Scientific Reports 14,
+30948 (2024)</a></p>
+<p><a href="https://doi.org/10.1038/s41598-024-82006-5"><img
+data-src="assets/qr_code_paper.png" width="350" /></a></p>
+</div>
+</div>
+</section>
+
+<section id="references" class="title-slide slide level1"
+data-visibility="uncounted">
+<h1 data-visibility="uncounted">references</h1>
+<div id="refs" class="text-smaller references csl-bib-body" role="list">
+<div id="ref-chen_2022_6369319" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">Z.
+Chen, <span>“<a
+href="https://doi.org/10.5281/zenodo.6369319">Spatiotemporal checkins
+with social connections</a>.”</span> Zenodo, Mar-2022.</div>
+</div>
+<div id="ref-yabe_2024_10836269" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">T.
+Yabe <em>et al.</em>, <span>“<a
+href="https://doi.org/10.5281/zenodo.10836269">YJMob100K: City-scale and
+longitudinal dataset of anonymized human mobility
+trajectories</a>.”</span> Zenodo, Mar-2024.</div>
+</div>
+<div id="ref-yabe2023humob" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">T.
+Yabe <em>et al.</em>, <span>“<a
+href="https://connection.mit.edu/humob-challenge-2023/"><span>HuMob
+Challenge 2023</span></a>.”</span> <a
+href="https://connection.mit.edu/humob-challenge-2023/"
+class="uri">https://connection.mit.edu/humob-challenge-2023/</a>,
+2023.</div>
+</div>
+<div id="ref-yabe2024yjmob100k" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">T.
+Yabe <em>et al.</em>, <span>“YJMob100K: City-scale and longitudinal
+dataset of anonymized human mobility trajectories,”</span>
+<em>Scientific Data</em>, vol. 11, no. 1, p. 397, 2024.</div>
+</div>
+<div id="ref-estat2020population" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div
+class="csl-right-inline">Official Statistics of Japan, <span>“<a
+href="https://www.e-stat.go.jp/en/stat-search/files?page=1&amp;layout=datalist&amp;toukei=00200521&amp;tstat=000001136464&amp;cycle=0&amp;year=20200&amp;month=24101210&amp;tclass1=000001136466">Population
+census 2020</a>.”</span> 2020.</div>
+</div>
+<div id="ref-mishra2025breaking" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">A.
+K. Mishra, M. Cunche, and H. H. Arcolezi, <span>“Breaking anonymity at
+scale: Re-identifying the trajectories of 100K real users in
+japan,”</span> <em>arXiv preprint arXiv:2506.05611</em>, 2025.</div>
+</div>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script src="assets/reveal.js-5.2.1//dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="assets/reveal.js-5.2.1//plugin/notes/notes.js"></script>
+  <script src="assets/reveal.js-5.2.1//plugin/search/search.js"></script>
+  <script src="assets/reveal.js-5.2.1//plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'print',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script>
+      document.querySelectorAll('.beer-slider').forEach(bs => { new BeerSlider(bs, { start: bs.dataset.beerStart }); })
+    </script>
+    </body>
+</html>
