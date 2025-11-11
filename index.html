@@ -989,7 +989,7 @@ class="slide level2">
 </tbody>
 </table>
 </div>
-<div class="fragment current-visible" data-fragment-index="1">
+<div class="fragment" data-fragment-index="1">
 <table>
 <thead>
 <tr class="header">
@@ -1033,10 +1033,73 @@ class="slide level2">
 </table>
 </div>
 </div>
-<div class="mt-4 fragment" data-fragment-index="2">
+<div class="mt-3 fragment" data-fragment-index="2">
 <p>there’s a trade-off between privacy preservation and researchers’
 interest of working with granular mobility data</p>
+<p>distinguishing does not mean identifying<span
+class="fragment text-color-aurora1" data-fragmen-index="3">, but with
+additional information that could happen as well, espeally for famous
+people</span></p>
 </div>
+</section>
+<section id="how-could-the-privacy-be-preserved" class="slide level2">
+<h2>how could the privacy be preserved?</h2>
+<ul>
+<li>exclude location information completely</li>
+<li>add noise to (a part of) the locations</li>
+<li>or add fake appearances</li>
+</ul>
+</section>
+<section id="adding-noise" class="slide level2">
+<h2>adding noise</h2>
+<ul>
+<li>Gaussian noise to every location
+<ul>
+<li>with standard deviation of 250, 500, 1000 (in the figure), 2000
+meters</li>
+</ul></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="figures/before_noise.svg" width="350" /></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="figures/noise_as_blur.svg"
+data-preview-image="figures/noise_as_blur.svg"
+data-preview-fit="contain" width="350" /></p>
+</div>
+</div>
+</section>
+<section id="geolocating-after-noise-addition" class="slide level2">
+<h2>geolocating after noise addition</h2>
+<div class="text-smaller">
+<p>Euclidean distance between the upper-left corner of the observation
+area and the result of the template matching operation (in meters)</p>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<figure>
+<img data-src="figures/noise_evaluation_toronto.svg" alt="Toronto" />
+<figcaption aria-hidden="true">Toronto</figcaption>
+</figure>
+</div><div class="column" style="width:50%;">
+<figure>
+<img data-src="figures/noise_evaluation_london.svg" alt="London" />
+<figcaption aria-hidden="true">London</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="what-did-we-learn-so-far-1" class="slide level2">
+<h2>what did we learn so far?</h2>
+<ol type="1">
+<li>human activity is closely linked to urban areas</li>
+<li>even if the activity is transformed to a virtual plane (blind
+map)<br>the city is geolocatable
+<ul>
+<li>even strong discretization</li>
+<li>or noise addition</li>
+</ul></li>
+</ol>
 </section></section>
 <section>
 <section id="observation-period" class="title-slide slide level1"
