@@ -1,0 +1,60 @@
+require 'optparse'
+require 'yaml'
+
+options = YAML.load_file('build_config.yaml')
+
+OptionParser.new do |parser|
+  parser.banner = 'Usage: build.rb [options]'
+
+  parser.on('-m', '--markdown INPUT', 'Provide MARKDOWN filename') do |i|
+    options["markdown"] = i
+    if i.end_with? '.md'
+      options["markdown"] = i[..-4]
+    end
+  end
+  parser.on('--bibliography BIBLIOGRAPHY', 'Provide BIBLIOGRAPHY file') do |bibliography|
+    options["bibliography"] = bibliography
+  end
+  parser.on('--csl CSL', 'Provide CSL file') do |csl|
+    options["csl"] = csl
+  end
+  parser.on('-e', '--embed-resources', 'embed resources') do |_s|
+    options["embed_resources"] = true
+  end
+end.parse!
+
+options["exclude"].each do |filename|
+  if options["markdown"] == filename
+    exit(0)
+  end
+end
+
+arguments = "-f markdown+tex_math_double_backslash -t revealjs"
+arguments += " #{options["markdown"]}.md -o #{options["markdown"]}.html"
+if options["embed_resources"]
+  arguments += " --embed-resources"
+end
+arguments += " --standalone"
+arguments += " --slide-level 2"
+options["css"].each do |css|
+  arguments += " --css #{css}"
+end
+if options["citeproc"]
+  arguments += " --citeproc --csl #{options["csl"]}"
+end
+options["bibliography"].each do |bibfile|
+  arguments += " --bibliography #{bibfile}"
+end
+if options["mathml"]
+  arguments += " --mathml"
+end
+if options["html_header"]
+  arguments += " -H #{options["html_header"]}"
+end
+if options["html_after_body"]
+  arguments += " -A #{options["html_after_body"]}"
+end
+
+arguments += " --lua-filter slider.lua"
+
+`pandoc #{arguments}`

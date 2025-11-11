@@ -1,0 +1,19 @@
+embed_resources: false
+bibliography:
+    - "references.bib"
+citeproc: true
+csl: "assets/ieee.csl"
+css:
+    - "assets/BeerSlider.css"
+    - "assets/nord.css"
+    - "assets/helpers.css"
+    - "assets/custom.css"
+    - "assets/fontawesome/css/fontawesome.min.css"
+    - "assets/fontawesome/css/solid.min.css"
+    - "assets/fontawesome/css/brands.min.css"
+mathml: true
+assets: "assets"
+html_header: "assets/custom_header.html"
+html_after_body: "assets/after_body.html"
+exclude:
+    - "README"
