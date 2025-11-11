@@ -16,9 +16,9 @@ jobs:
 
             - name: install dependencies
               run: |
-                  sudo apt-get install -y ruby pandoc
+                  sudo apt-get install -y ruby pandoc pandoc-citeproc
 
-            - name: compile presentaion
+            - name: compile presentation
               run: |
                   ruby build.rb
                   mkdir public
