@@ -158,30 +158,30 @@ reproductions of figure 8 [@yabe2024yjmob100k]
 ::: {}
 ![](figures/user_heatmap.png)
 
-<!-- <i class="fa-solid"></i> -->
-![](assets/empty.drawio.svg){width=48}
+<i class="fa-solid"></i>
+<!-- ![](assets/empty.drawio.svg){width=48} -->
 :::
 ::: {.fragment fragment-index=2 .current-visible}
 ![](figures/user_heatmap_rot.png)
 
-<!-- <i class="fa-solid fa-rotate-left"></i> -->
-![](assets/rotate.drawio.svg){width=48}
+<i class="fa-solid fa-rotate-left"></i>
+<!-- ![](assets/rotate.drawio.svg){width=48} -->
 :::
 ::: {.fragment fragment-index=3}
 ![](figures/user_heatmap_rotrot.png)
 
-<!-- <i class="fa-solid fa-rotate-left"></i><i class="fa-solid fa-rotate-left"></i> -->
-![](assets/rotate.drawio.svg){width=48}
-![](assets/rotate.drawio.svg){width=48}
+<i class="fa-solid fa-rotate-left"></i><i class="fa-solid fa-rotate-left"></i>
+<!-- ![](assets/rotate.drawio.svg){width=48} -->
+<!-- ![](assets/rotate.drawio.svg){width=48} -->
 :::
 ::::::
 :::::::::
 ::::::::: {.column width="33%" .fragment fragment-index=4}
 ![](figures/user_heatmap_fixed.png)
 
-<!-- <i class="fa-solid fa-arrows-left-right"></i> -->
+<i class="fa-solid fa-arrows-left-right"></i>
 <!-- <i class="fa-solid fa-arrows-left-right-to-line"></i> -->
-![](assets/mirror.drawio.svg){width=48}
+<!-- ![](assets/mirror.drawio.svg){width=48} -->
 :::::::::
 ::::::::::::
 
