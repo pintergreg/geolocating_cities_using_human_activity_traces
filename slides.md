@@ -741,3 +741,29 @@ read the paper:<br>[Scientific Reports 14, 30948 (2024)](https://doi.org/10.1038
 
 ::: {#refs .text-size-1 .text-align-left}
 :::
+
+# other cities upscaled {visibility=uncounted}
+
+:::::::::::: {.columns}
+::::::::: {.column width="50%"}
+![](figures/toronto/location_comparison.png){preview-image="figures/toronto/location_comparison.png" preview-fit="contains"}
+
+:::::::::
+::::::::: {.column width="50%"}
+![](figures/london/location_comparison.png){preview-image="figures/london/location_comparison.png" preview-fit="contains"}
+
+:::::::::
+::::::::::::
+
+## other cities upscaled {visibility=uncounted}
+
+:::::::::::: {.columns}
+::::::::: {.column width="50%"}
+![](figures/helsinki/location_comparison.png){preview-image="figures/helsinki/location_comparison.png" preview-fit="contains"}
+
+:::::::::
+::::::::: {.column width="50%"}
+![](figures/dallas/location_comparison.png){preview-image="figures/dallas/location_comparison.png" preview-fit="contains"}
+
+:::::::::
+::::::::::::
