@@ -706,8 +706,13 @@ Port Messe Nagoya -- event center
 
 # takeaway
 
+0. any data that describes human activity reflects the human behavior
+    - contains a lot of implicit information
 1. human activity is closely linked to urban areas
-2. even if the activity is transformed to a virtual plane (blind map)<br>the city is geolocatable
+2. even if the activity is transformed to a virtual plane (blind map)<br>the urban landscape is recognizable
+    - obscuring the spatial dimension doesn't increase privacy
+3. the temporal characteristic of human mobility data is also specific to the circadian rhythm
+    - also the social / economic routine
 
 # thanks for the attention! {background="#2e3440" .as-main-title }
 
