@@ -1,4 +1,4 @@
-embed_resources: false
+embed_resources: true
 bibliography:
     - "references.bib"
 citeproc: true
