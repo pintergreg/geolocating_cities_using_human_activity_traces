@@ -22,6 +22,7 @@ jobs:
               run: |
                   ruby build.rb -m slides.md
                   mkdir public
+                  cp -r figures public/figures/
                   cp slides.html public/index.html
 
             - name: deploy
